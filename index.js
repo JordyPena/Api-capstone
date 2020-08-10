@@ -19,8 +19,8 @@ $("#submit").on("click", event => {
             return response.json() 
         else if (response.status === 404) 
             alert("No results found please select a bodypart from the dropdown menu.")
-        else 
-            alert("Something went wrong please try again.")
+        else
+            throw new Error("Something went wrong please try again.")
         
     })
     .then(responseJson => {
@@ -75,7 +75,7 @@ function videoSearch(key, userSelection, maxResults) {
         else if (response.status === 404)
             alert("No results found please select a bodypart from the dropdown menu.")
         else
-            alert("Something went wrong please try again.")
+            throw new Error("Something went wrong please try again.")
     })
     .then(responseJson => {
         let vidArray = [];
@@ -85,7 +85,7 @@ function videoSearch(key, userSelection, maxResults) {
         }
        for (let i = 0; i < vidArray.length; i++)  {
                     
-            let VIDEO = `<iframe width="300" height="225" src="http://www.youtube.com/embed/${vidArray[i].id.videoId}" frameborder="0" allowfullscreen></iframe>`
+            let VIDEO = `<iframe width="300" height="225" src="https://www.youtube.com/embed/${vidArray[i].id.videoId}" frameborder="0" allowfullscreen></iframe>`
 
             $("#videos").append(VIDEO);
         }
