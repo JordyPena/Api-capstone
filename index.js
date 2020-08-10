@@ -4,16 +4,20 @@ const VIDEO = ""
 //fetch body part and amount of workouts needed
 //store data into a function to use for displaying
 $("#submit").on("click", event => {
+    $("#hidden").show();
     $("#result").empty();
     
     event.preventDefault();
     let selected = $("#bodypart").val();
     let amount = $("#resultAmount").val();
+    if (amount === "") {
+        amount = 5;
+    }
     fetch(`https://wger.de/api/v2/exerciseinfo/?language=2&status=2`)
     .then(response => { 
-        if (response.status = 200)
+        if (response.status === 200)
             return response.json() 
-        else if (response.status = 404) 
+        else if (response.status === 404) 
             alert("No results found please select a bodypart from the dropdown menu.")
         else 
             alert("Something went wrong please try again.")
@@ -41,8 +45,10 @@ $("#submit").on("click", event => {
         
     })
     .catch(error => alert(error)) 
-    videoSearch(APIKEY,selected,5)
+    videoSearch(APIKEY,selected,50)
 })
+
+
 //display workout name
 //dispay workout description
 function categoryDisplay(data) {
@@ -62,23 +68,26 @@ function categoryDisplay(data) {
 
 function videoSearch(key, userSelection, maxResults) {
     $("#videos").empty()
-    fetch(`https://www.googleapis.com/youtube/v3/search?key=${APIKEY}&type=video&part=snippet&maxResults=${maxResults}&q=${userSelection}+workout`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${APIKEY}&type=video&part=snippet&maxResults=${maxResults}&q=${userSelection}+workouts&order=date`)
     .then(response => {
-        if (response.status = 200)
+        if (response.status === 200)
             return response.json()
-        else if (response.status = 404)
+        else if (response.status === 404)
             alert("No results found please select a bodypart from the dropdown menu.")
         else
             alert("Something went wrong please try again.")
     })
     .then(responseJson => {
-        console.log(responseJson)
-        
-       for (let i = 0; i < responseJson.items.length; i++)  {
-                     
-                 let VIDEO = `<iframe width="300" height="225" src="http://www.youtube.com/embed/${responseJson.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe>`
+        let vidArray = [];
+        while (vidArray.length < 5) {
+           let randomIndex = Math.floor(Math.random() * Math.floor(responseJson.items.length));
+           vidArray.push(responseJson.items.splice(randomIndex, 1)[0])
+        }
+       for (let i = 0; i < vidArray.length; i++)  {
+                    
+            let VIDEO = `<iframe width="300" height="225" src="http://www.youtube.com/embed/${vidArray[i].id.videoId}" frameborder="0" allowfullscreen></iframe>`
 
-                    $("#videos").append(VIDEO);
+            $("#videos").append(VIDEO);
         }
     }) 
     .catch(error => alert(error)) 
@@ -87,6 +96,11 @@ function videoSearch(key, userSelection, maxResults) {
 
 
 
+//document ready
+$(function() {
+    $("#hidden").hide();
+    
+})
 
 
 
