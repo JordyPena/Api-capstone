@@ -3,6 +3,7 @@ const VIDEO = "";
 //create event listener for which dropdown bodypart was selected
 //fetch body part and amount of workouts needed
 //store data into a function to use for displaying
+//create an alert for errors
 $("#submit").on("click", (event) => {
   $(".form-container").addClass("form-submit");
     $(".form-container").removeClass("form-container");
@@ -51,9 +52,12 @@ function categoryDisplay(data) {
   $("#result").append(myHtml);
 }
 
-// run youtube only when you get the workout API working!!
+
 //fetch youtube api
-//grab video and display
+//create a alert for errors
+//grab a random amount of videos
+//selecet maxResults from the random amount of videos
+//display videos
 
 function videoSearch(key, userSelection, maxResults) {
   $("#videos").empty();
@@ -90,5 +94,4 @@ $(function () {
   $("#hidden").hide();
 });
 
-//feedback from riley remember to have a function to generate information
-//and one for manilupating the dom
+
