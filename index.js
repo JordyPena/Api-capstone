@@ -111,5 +111,6 @@ function displayErrors(error) {
 //document ready
 $(function () {
   $("#hidden").hide();
+  $(".result").hide();
 });
 

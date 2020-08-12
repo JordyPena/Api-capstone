@@ -20,6 +20,7 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -163,6 +164,10 @@ iframe {
 
     .workout-container:first-child {
         margin-top: 0;
+    }
+
+    .header {
+        width: 50%;
     }
     
 }
