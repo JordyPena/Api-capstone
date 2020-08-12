@@ -12,6 +12,8 @@ html, body {
 
 body {
     color: white;
+    background: url("images/gym-capstone.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
 .form-container {
@@ -36,10 +38,19 @@ form > * {
     
 }
 
+.header {
+    font-family: "Open Sans", sans-serif;
+    justify-content: center;
+    display: flex;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 10px 20px;
+    text-align: center;
+}
+
 form {
     font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
-    background-color: rgba(0,0,0,.5);
     padding: 30px;
     border-radius: 20px;
 }
@@ -82,12 +93,6 @@ form {
     margin-block-end: 0;
 }
 
-.workout-container {
-    background: rgba(0,0,0,.5);
-    border-radius: 20px;
-    
-}
-
 #videos {
     display: grid;
     grid-template-columns: 1fr;
@@ -112,11 +117,23 @@ iframe {
 .background {
     width: 100%;
     height: 100%;
-    background: url("images/gym-capstone.jpg") no-repeat center center fixed;
-    background-size: cover;
-    opacity: .5;
+    background-color: black;
+    opacity: .7;
     position: fixed;
     z-index: -1;
+}
+
+.workout-container:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.workout-container:first-child {
+    margin-top: 15px;
+}
+
+.errors {
+    color: yellow;
+    font-weight: bold;
 }
 
 @media screen and (min-width: 1024px) {
@@ -127,21 +144,25 @@ iframe {
     .workout-container {
         max-width: 50%;
         margin-bottom: 15px;
+        width: 100%;
     }
 
-    .result {
+    .result, #videos {
         width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         padding: 0;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
     .workout-container:not(:last-child) {
-        margin-bottom: 15px;
+        margin-bottom: 0;
     }
 
     .workout-container:first-child {
-        margin-top: 15px;
+        margin-top: 0;
     }
+    
 }

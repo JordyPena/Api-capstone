@@ -9,6 +9,8 @@
  <body>
 <div class="background"></div>
     <!--create a dropdown of all excercies-->
+    <div class="header">Quick Fit</div>
+    <div class="header">On the go? Need a quick workout. Select a body part and the number of exercises you need!</div>
     <div class="form-container">
         <form>
             <div>
@@ -26,12 +28,12 @@
             <!--choose workout amounts-->
             <div>
                 <label for="resultAmount">Amount of workouts needed:</label>
-                <input type="number" id="resultAmount" minlength="1" maxlength="2">        
+                <input type="number" id="resultAmount" min="0">        
             </div>
             <div>
                 <input id="submit" type="submit">
             </div>
-            
+            <div class="errors"></div>
         </form>
     </div>
     
@@ -42,14 +44,16 @@
         
     </div>
     
+    
+    
    <!--display youtube videos-->
     <p id="hidden" class="hidden">Other related workout videos:</p>
-    
-    <div class="list">
 
         <div id="videos"></div>
-       
-    </div>
+           
+        
+    
+    
 
     
 
