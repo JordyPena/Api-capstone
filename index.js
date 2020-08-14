@@ -9,6 +9,7 @@ $("#submit").on("click", (event) => {
   $("#hidden").show();
   $("#result").empty();
   $("#videos").empty();
+  $("#result").show();
 
   event.preventDefault();
   let selected = $("#bodypart").val();
@@ -111,6 +112,6 @@ function displayErrors(error) {
 //document ready
 $(function () {
   $("#hidden").hide();
-  $(".result").hide();
+  $("#result").hide();
 });
 
