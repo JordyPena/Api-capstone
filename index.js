@@ -27,6 +27,7 @@ $("#submit").on("click", (event) => {
 function workoutSearch(amount, selected) {
   fetch(`https://wger.de/api/v2/exerciseinfo/?language=2&status=2`)
     .then((response) => {
+      console.log(response);
       if (response.status === 200) return response.json();
       else if (response.status === 404)
         displayErrors(
@@ -35,18 +36,20 @@ function workoutSearch(amount, selected) {
       else throw new Error("Something went wrong please try again.");
     })
     .then((responseJson) => {
-      displayWorkouts(responseJson, selected, amount);
+      console.log(responseJson);
+      displayWorkouts(responseJson.results, selected, amount);
     })
     .catch((error) => displayErrors(error));
 }
 ///display workout name and description
-function displayWorkouts(responseJson, selected, amount) {
+function displayWorkouts(data, selected, amount) {
   let counter = 0;
-  for (let i = 0; i < responseJson.length; i++) {
-    if (responseJson[i].category.name === selected) {
+  console.log(data);
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].category.name === selected) {
       if (counter < amount) {
-        if (responseJson[i].description !== "") {
-          $("#result").append(categoryTemplate(responseJson[i]));
+        if (data[i].description !== "") {
+          $("#result").append(categoryTemplate(data[i]));
           counter++;
         }
       }
@@ -114,4 +117,3 @@ $(function () {
   $("#hidden").hide();
   $("#result").hide();
 });
-
