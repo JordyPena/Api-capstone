@@ -27,7 +27,7 @@ $("#submit").on("click", (event) => {
 function workoutSearch(amount, selected) {
   fetch(`https://wger.de/api/v2/exerciseinfo/?language=2&status=2`)
     .then((response) => {
-      console.log(response);
+    
       if (response.status === 200) return response.json();
       else if (response.status === 404)
         displayErrors(
@@ -36,7 +36,7 @@ function workoutSearch(amount, selected) {
       else throw new Error("Something went wrong please try again.");
     })
     .then((responseJson) => {
-      console.log(responseJson);
+      
       displayWorkouts(responseJson.results, selected, amount);
     })
     .catch((error) => displayErrors(error));
@@ -44,7 +44,7 @@ function workoutSearch(amount, selected) {
 ///display workout name and description
 function displayWorkouts(data, selected, amount) {
   let counter = 0;
-  console.log(data);
+  
   for (let i = 0; i < data.length; i++) {
     if (data[i].category.name === selected) {
       if (counter < amount) {
